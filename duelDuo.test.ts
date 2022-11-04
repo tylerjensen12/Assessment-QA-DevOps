@@ -6,7 +6,7 @@ require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 beforeEach(async () => {
-    driver.get('http://localhost:3000/')
+    driver.get('https://f30-qa-devops-test.herokuapp.com/')
 })
 
 afterAll(async () => {
@@ -29,9 +29,11 @@ test('All bots show up', async () => {
 
 test('Add bots to duo to duel', async () => {
     await driver.findElement(By.xpath('//button[@id="draw"]')).click()
+    await driver.sleep(1000)
     await driver.findElement(By.xpath('//button[@class="bot-btn"]')).click()
+    await driver.sleep(1000)
     await driver.findElement(By.xpath('//button[@class="bot-btn"]')).click()
-    await driver.sleep(2000)
+    await driver.sleep(1000)
     const duel = await driver.findElement(By.xpath('//button[@id="duel"]'))
     const displayed = await duel.isDisplayed()
     expect(displayed).toBe(true)
