@@ -6,7 +6,7 @@ require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 beforeEach(async () => {
-    driver.get('https://f30-qa-devops-test.herokuapp.com/')
+    driver.get('http://localhost:3000/')
 })
 
 afterAll(async () => {
