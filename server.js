@@ -56,15 +56,15 @@ app.post('/api/duel', (req, res) => {
         // getting the duos from the front end
         let {compDuo, playerDuo} = req.body
         
-        if(playerDuo[0].health + playerDuo[1].health === 240){
-            rollbar.warning('Overpowered player!!!')
-        }
         // adding up the computer player's total health and attack damage
         let compHealth = compDuo[0].health + compDuo[1].health
         let compAttack = compDuo[0].attacks[0].damage + compDuo[0].attacks[1].damage + compDuo[1].attacks[0].damage + compDuo[1].attacks[1].damage
         
         // adding up the player's total health and attack damage
         let playerHealth = playerDuo[0].health + playerDuo[1].health
+        if(playerHealth === 240){
+            rollbar.warning('Overpowered player!!!')
+        }
         let playerAttack = playerDuo[0].attacks[0].damage + playerDuo[0].attacks[1].damage + playerDuo[1].attacks[0].damage + playerDuo[1].attacks[1].damage
         
         // calculating how much health is left after the attacks on each other
